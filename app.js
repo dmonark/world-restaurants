@@ -34,11 +34,11 @@ app.use(cors({
 
 require('./server/routes')(app); //api routes
 
-/*app.use(express.static(__dirname)); //any other route
+app.use(express.static(__dirname)); //any other route
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});*/
+});
 
 var port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);

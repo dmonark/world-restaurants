@@ -39,7 +39,17 @@ exports.list = function (req, res) {
 	if(req.query.lowerCost && req.query.upperCost)
 		filterList['cost'] = {$gte: req.query.lowerCost, $lte: req.query.upperCost}
 	
+	var sortingType = {}
+	if(req.query.sorting === "cost-low-high")
+		sortingType['cost'] = '1'
+	else if(req.query.sorting === "cost-high-low")
+		sortingType['cost'] = '-1'
+	else if(req.query.sorting === "rating-high-low")
+		sortingType['rating'] = '-1'
+	else if(req.query.sorting === "votes-high-low")
+		sortingType['voters'] = '-1'
 	Restaurants.find(filterList)
+	.sort(sortingType)
 	.then(function (restaurants) {
     res.status(200).send(restaurants);
   }).catch(function (err) {

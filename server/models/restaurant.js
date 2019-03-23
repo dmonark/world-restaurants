@@ -3,7 +3,44 @@
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
-
+var LocationSchema = new Schema({
+  country: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 20
+  },
+	city: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 20
+  },
+	address: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 200
+  },
+	locality: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 200
+  },
+	longitude: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 20
+  },
+	latitude: {
+    type: String,
+    require: true,
+    trim: true,
+    max: 20
+  }
+});
 var RestaurantSchema = new Schema({
   restaurantID: {
     type: String,
@@ -50,7 +87,11 @@ var RestaurantSchema = new Schema({
 		type: Number,
     require: true,
   },
-  createdAt: {
+	location: {
+		type: LocationSchema,
+		default: {}
+  },
+	createdAt: {
     type: Date,
     default: Date.now
   }

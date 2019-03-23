@@ -27,4 +27,4 @@ var UserSchema = new Schema({
 });
 UserSchema.plugin(uniqueValidator); // Export the model
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('users', UserSchema);
